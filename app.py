@@ -52,7 +52,12 @@ def about():
 
 @app.route('/headers')
 def headers():
-    return render_template('pages/headers.html')
+    headers = {
+    "user_ip" : request.remote_addr,
+    "reqReaders" : request.headers,
+    "user-agent" : request.headers.get('User-Agent')
+    }
+    return render_template('pages/headers.html', headers=headers)
 
 @app.route('/login')
 def login():
