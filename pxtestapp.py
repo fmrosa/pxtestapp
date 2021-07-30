@@ -3,6 +3,7 @@
 #----------------------------------------------------------------------------#
 
 from flask import Flask, render_template, request
+from flask_socketio import SocketIO
 # from flask.ext.sqlalchemy import SQLAlchemy
 import logging
 from logging import Formatter, FileHandler
@@ -15,6 +16,8 @@ import os
 
 app = Flask(__name__)
 app.config.from_object('config')
+socketio = SocketIO(app)
+
 #db = SQLAlchemy(app)
 
 # Automatically tear down SQLAlchemy.
@@ -76,6 +79,20 @@ def forgot():
     form = ForgotForm(request.form)
     return render_template('forms/forgot.html', form=form)
 
+@app.route('/websocket')
+def websocket(): 
+    return render_template('pages/websocket.html')
+
+def messageReceived(methods=['GET', 'POST']):
+    print('message was received!!!')
+
+
+@socketio.on('my event')
+def handle_my_custom_event(json, methods=['GET', 'POST']):
+    print('received my event: ' + str(json))
+    socketio.emit('my response', json, callback=messageReceived)
+
+
 # Error handlers.
 
 
@@ -111,6 +128,6 @@ if __name__ == '__main__':
 # Or specify port manually:
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 80))
-    app.run(host='0.0.0.0', port=port)
+    port = int(os.environ.get('PORT', 5000))
+    socketio.run(host='0.0.0.0', port=port)
 

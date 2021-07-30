@@ -54,6 +54,7 @@
           <ul class="nav navbar-nav">
             <li {% if request.endpoint == 'home' %} class="active" {% endif %}><a href="{{ url_for('home') }}">Home</a></li>
             <li {% if request.endpoint == 'headers' %} class="active" {% endif %}><a href="{{ url_for('headers') }}">Headers</a></li>
+            <li {% if request.endpoint == 'websocket' %} class="active" {% endif %}><a href="{{ url_for('websocket') }}">Chat</a></li>
             <li {% if request.endpoint == 'about' %} class="active" {% endif %}><a href="{{ url_for('about') }}">About</a></li>
             <!--
             <li class="dropdown">
@@ -99,7 +100,7 @@
 
   <div id="footer">
     <div class="container">
-      <p>Clientless NPA &copy; All Rights Reserved.</p>
+      <p>this code is on github <a href="https://github.com/fmrosa/pxtestapp">here</a> 
       {% block footer %}{% endblock %}
     </div>
   </div>

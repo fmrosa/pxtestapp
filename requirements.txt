@@ -1,8 +1,10 @@
 Fabric
 Flask-SQLAlchemy
+Flask
 Flask-WTF
 WTForms
 coverage
+flask=socketio
 # ecdsa
 # paramiko
 # pycrypto
