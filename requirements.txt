@@ -4,7 +4,7 @@ Flask
 Flask-WTF
 WTForms
 coverage
-flask=socketio
+flask-socketio
 # ecdsa
 # paramiko
 # pycrypto
